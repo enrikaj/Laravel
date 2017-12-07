@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="/products">Visi produktai</a></li>
+                        <li><a href="/categories">Kategorijos</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
