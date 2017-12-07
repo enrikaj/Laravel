@@ -75,6 +75,11 @@ class CategoriesController extends Controller
       return view('categories.edit', ['category' =>$category]);
   }
 
+  public function destroy($id)
+  {
 
+    \App\Category::destroy($id);
+    return redirect('categories');
+  }
 
 }
