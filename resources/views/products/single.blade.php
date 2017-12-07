@@ -21,7 +21,7 @@
                     <tr>
                       <td>{{ $product['id'] }}</td>
                       <td>{{ $product['name'] }}</td>
-                      <td></td>
+                      <td><img style="width: 100px" src="{{ Storage::url($product['photo_url'])}}"></td>
                       <td>{{ $product['price'] }}</td>
                     </tr>
                   </tbody>
