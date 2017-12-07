@@ -34,7 +34,13 @@
                       <td>{{ $product['price'] }}</td>
                       <td>
                           <a class="btn btn-default" href="{{ route('products.edit', $product['id']) }}">Redaguoti</a>
-                          <a class="btn btn-danger" href="#">Trinti</a>
+
+                          <form method="POST" action="{{ route('products.destroy', $product['id']) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+
+                          <button class="btn btn-danger" href="#">Trinti</button>
+                        </form>
                       </td>
                     </tr>
                       @endforeach

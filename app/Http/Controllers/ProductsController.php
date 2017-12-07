@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -38,17 +39,19 @@ class ProductsController extends Controller
     {
         $rules = [
         'name' => 'required',
-        'photo_url' => 'required|image',
+        'photo_url' => 'image',
         'price' => 'required|numeric'
       ];
 
         $request->validate($rules);
 
-        $photoPath = $request->file('photo_url')->store('public/products');
+          $product = new \App\Product();
 
-        $product = new \App\Product();
+        if ($request->hasFile('photo_url')) {
+          $product->photo_url = $request->file('photo_url')->store('public/products');
+        }
+
         $product->name = $request->input('name');
-        $product->photo_url = $photoPath;   //jei nuotrauka nera butina tai galima irasyti migracijos faile nullable
         $product->price = $request->input('price');
         $product->save();
 
@@ -90,7 +93,36 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+          'name' => 'required|max:100',
+          'price' => 'required|numeric',
+          'photo_url' => 'image'
+        ];
+
+        $request->validate($rules);
+
+        $product = \App\Product::find($id);
+
+        if ($request->hasFile('photo_url')){
+          $newPath = $request->file('photo_url')->store('public/products');
+
+          Storage::delete($product->photo_url);
+
+          $product->photo_url = $newPath;
+        }
+
+        if ($request->input('delete_photo') == true){
+            Storage::delete($product->photo_url);
+
+            $product->photo_url = null;
+        }
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->save();
+
+        return redirect('products');
+
     }
 
     /**
@@ -101,6 +133,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $product = \App\Product::find($id);
+      Storage::delete($product->photo_url);
+
+      \App\Product::destroy($id);
+      return redirect('products');
     }
 }

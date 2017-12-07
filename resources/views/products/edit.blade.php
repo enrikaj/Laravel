@@ -24,9 +24,10 @@
 
                     <input type="text" name="name" placeholder="Pavadinimas" value="{{ old('name', $product->name) }}"><br>
                     <input type="file" name="photo_url" placeholder="Nuotrauka" value="{{ old('photo_url') }}"><br>
+                    <input type="checkbox" name="delete_photo">Ištrinti nuotrauką<br>
                     <input type="text" name="price" placeholder="Kaina" value="{{ old('price', $product->price) }}"><br>
                     <br><br>
-                    <input type="submit" value="Sukurti">
+                    <input type="submit" value="Redaguoti">
                   </form>
                 </div>
             </div>
