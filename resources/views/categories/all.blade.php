@@ -26,6 +26,15 @@
                           <a href="{{ route('categories.show', $category['id']) }}">{{ $category['name'] }}</a>
                       </td>
                       <td>{{ $category['name'] }}</td>
+                      <td>
+                          <a class="btn btn-default" href="{{ route('categories.edit', $category['id']) }}">Redaguoti</a>
+
+                          <form method="POST" action="{{ route('categories.destroy', $category['id']) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                          <button class="btn btn-danger" href="#">Trinti</button>
+                        </form>
+                      </td>
                     </tr>
                       @endforeach
                   </tbody>

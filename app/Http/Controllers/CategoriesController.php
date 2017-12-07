@@ -18,6 +18,7 @@ class CategoriesController extends Controller
       return view('categories.all', ['categories' => $categories]);
   }
 
+
   public function store(Request $request)
   {
       $rules = [
@@ -35,10 +36,12 @@ class CategoriesController extends Controller
       return redirect('categories');
   }
 
+
   public function create()
   {
       return view('categories.create');
   }
+
 
   public function show($id)
   {
@@ -46,6 +49,32 @@ class CategoriesController extends Controller
 
       return view('categories.single', ['category' => $single]);
   }
+
+
+  public function update(Request $request, $id)
+  {
+      $rules = [
+        'name' => 'required|max:100',
+      ];
+
+      $request->validate($rules);
+
+      $category = \App\Category::find($id);
+
+      $category->name = $request->input('name');
+      $category->save();
+
+      return redirect('categories');
+
+  }
+
+  public function edit($id)
+  {
+      $category = \App\Category::find($id);
+
+      return view('categories.edit', ['category' =>$category]);
+  }
+
 
 
 }

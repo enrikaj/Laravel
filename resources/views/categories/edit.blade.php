@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Redaguojamas produktas - {{ $product->name }}</div>
+                <div class="panel-heading">Redaguojama kategorija - {{ $category->name }}</div>
 
                 <div class="panel-body">
 
@@ -17,14 +17,11 @@
                   </div>
                   @endif
 
-                  <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
+                  <form method="POST" action="{{ route('categories.update', $category->id) }}" enctype="multipart/form-data">
                     {{ csrf_field()}}
                     {{ method_field('PUT') }}
 
-                    <input type="text" name="name" placeholder="Pavadinimas" value="{{ old('name', $product->name) }}"><br>
-                    <input type="file" name="photo_url" placeholder="Nuotrauka" value="{{ old('photo_url') }}"><br>
-                    <input type="checkbox" name="delete_photo">Ištrinti nuotrauką<br>
-                    <input type="text" name="price" placeholder="Kaina" value="{{ old('price', $product->price) }}"><br>
+                    <input type="text" name="name" placeholder="Pavadinimas" value="{{ old('name', $category->name) }}"><br>
                     <br><br>
                     <input type="submit" value="Redaguoti">
                   </form>
