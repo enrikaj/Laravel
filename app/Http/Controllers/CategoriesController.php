@@ -17,4 +17,27 @@ class CategoriesController extends Controller
 
       return view('categories.all', ['categories' => $categories]);
   }
+
+  public function store(Request $request)
+  {
+      $rules = [
+      'name' => 'required',
+
+    ];
+
+      $request->validate($rules);
+
+        $category = new \App\Category();
+
+      $category->name = $request->input('name');
+      $category->save();
+
+      return redirect('categories');
+  }
+
+  public function create()
+  {
+      return view('categories.create');
+  }
+
 }

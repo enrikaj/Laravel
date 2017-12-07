@@ -8,6 +8,9 @@
                 <div class="panel-heading">Kategorijos</div>
 
                 <div class="panel-body">
+                  <div>
+                  <a class="btn btn-default" href="{{ route('categories.create')}}">Nauja kategorija</a>
+                </div>
                   <table class="table">
                     <thead>
                     <tr>
