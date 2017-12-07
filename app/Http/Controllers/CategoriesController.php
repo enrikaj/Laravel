@@ -40,4 +40,12 @@ class CategoriesController extends Controller
       return view('categories.create');
   }
 
+  public function show($id)
+  {
+      $single = \App\Category::find($id);
+
+      return view('categories.single', ['category' => $single]);
+  }
+
+
 }

@@ -22,6 +22,9 @@
                       @foreach ($categories as $category)
                     <tr>
                       <td>{{ $category['id'] }}</td>
+                      <td>
+                          <a href="{{ route('categories.show', $category['id']) }}">{{ $category['name'] }}</a>
+                      </td>
                       <td>{{ $category['name'] }}</td>
                     </tr>
                       @endforeach
