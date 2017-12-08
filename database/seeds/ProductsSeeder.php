@@ -11,9 +11,17 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        $product = new \App\Product();
-        $product->name = 'kazkas';
-        $product->price = 3.00;
-        $product->save();
+      $faker = Faker\Factory::create('lt_LT');
+
+      $data = [];
+
+      for($i =0; $i < 10; $i++) {
+        $data[] = [
+          'name' => $faker->words(3, true),
+          'price' => $faker->randomFloat(2, 10, 1000)
+        ];
+      }
+
+        DB::table('products')->insert($data);
     }
 }
