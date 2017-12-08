@@ -55,14 +55,14 @@ class ProductsController extends Controller
     //    $product->price = $request->input('price');
     //    $product->save();
 
-    //    return redirect('products');
 
         $product = \App\Product::create($request->all());
 
-        if ($request->hasFile('photo_url')){
+        if ($request->hasFile('photo_url')) {
             $product->photo_url = $request->file('photo_url')->store('public/products');
-          $product->save();
-        }
+            $product->save();
+}
+            return redirect('products');
     }
 
     /**
