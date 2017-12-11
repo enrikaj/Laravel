@@ -15,7 +15,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      $products = \App\Product::paginate(10);  //default
+      $products = \App\Product::with('category')->paginate(10);  //default
 
         Debugbar::info('labas');
         Debugbar::info($products);

@@ -9,7 +9,6 @@
 
                 <div class="panel-body">
 
-                
                   <table class="table">
                     <thead>
                     <tr>

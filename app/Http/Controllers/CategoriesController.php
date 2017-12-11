@@ -47,7 +47,7 @@ class CategoriesController extends Controller
   {
       $single = \App\Category::find($id);
       $products = $category->products()->get();
-
+      
       $single=[
         'category' => $category,
         'products' => $products

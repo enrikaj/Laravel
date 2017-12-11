@@ -15,6 +15,7 @@
                     <thead>
                     <tr>
                       <th>id</th>
+                      <th>Kategorija</th>
                       <th>Pavadinimas</th>
                       <th>Nuotrauka</th>
                       <th>Kaina</th>
@@ -27,6 +28,9 @@
                       @foreach ($products as $product)
                     <tr>
                       <td>{{ $product['id'] }}</td>
+                      <td>
+                        {{ empty($product->category) ? '' : $product->category->name }}
+                      </td>
                       <td>
                           <a href="{{ route('products.show', $product['id']) }}">{{ $product['name'] }}</a>
                       </td>
