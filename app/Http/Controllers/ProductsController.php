@@ -45,15 +45,15 @@ class ProductsController extends Controller
 
         $request->validate($rules);
 
-    //      $product = new \App\Product();
-
-    //    if ($request->hasFile('photo_url')) {
-    //      $product->photo_url = $request->file('photo_url')->store('public/products');
-    //    }
-
+  //      $product = new \App\Product();
+//
+  //     if ($request->hasFile('photo_url')) {
+  //       $product->photo_url = $request->file('photo_url')->store('public/products');
+  //     }
+//
   //      $product->name = $request->input('name');
-    //    $product->price = $request->input('price');
-    //    $product->save();
+  //      $product->price = $request->input('price');
+  //      $product->save();
 
 
         $product = \App\Product::create($request->all());
@@ -61,7 +61,7 @@ class ProductsController extends Controller
         if ($request->hasFile('photo_url')) {
             $product->photo_url = $request->file('photo_url')->store('public/products');
             $product->save();
-}
+          }
             return redirect('products');
     }
 
@@ -128,16 +128,27 @@ class ProductsController extends Controller
     //    $product->price = $request->input('price');
   //      $product->save();
 
-      $product = \App\Product::create($request->all());
+      $product = \App\Product::find($id);
 
-      if ($request->hasFile())
+      if ($request->hasFile('photo_url')){
+          $newPath = $request->file('photo_url')->store('public/products');
 
+          Storage::delete($product->photo_url);
+
+          $product->photo_url = $newPath;
+      }
+
+      if ($request->input('delete_photo') == true){
+          Storage::delete($product->photo_url);
+
+          $product->photo_url = null;
+      }
+
+      $product->fill($request->all());
+
+      $product->save();
 
         return redirect('products');
-
-
-
-
     }
 
     /**

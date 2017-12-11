@@ -8,6 +8,6 @@ class Product extends Model
 {
     protected $fillable = ['name', 'price'];
 
-  //  protected $guarded = ['price'];
+    protected $guarded = ['delete_photo'];
 
 }
