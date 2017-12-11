@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->unsignedDecimal('price', 8, 2);
             $table->text('photo_url');
             $table->timestamps();
+
+            
         });
     }
 

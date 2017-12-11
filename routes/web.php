@@ -26,9 +26,9 @@ Route::get('/hello/{name?}', function($name = 'vartotojas') {
 Route::get('/gallery', 'GalleryController@showAll');
 
 Route::resource('/products', 'ProductsController');
+Route::resource('/categories', 'CategoriesController');
+Route::get('/categories/{id}/products', 'CategoriesController@showProducts')->name('categotries.showProducts');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/categories', 'CategoriesController');

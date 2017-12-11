@@ -11,6 +11,9 @@
                   <div>
                   <a class="btn btn-default" href="{{ route('categories.create')}}">Nauja kategorija</a>
                 </div>
+                @if($products->count() == 0)
+
+                @else
                   <table class="table">
                     <thead>
                     <tr>

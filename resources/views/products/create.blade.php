@@ -22,6 +22,12 @@
                     <input type="text" name="name" placeholder="Pavadinimas" value="{{ old('name') }}"><br>
                     <input type="file" name="photo_url" placeholder="Nuotrauka" value="{{ old('photo_url') }}"><br>
                     <input type="text" name="price" placeholder="Kaina" value="{{ old('price') }}"><br>
+
+                    <select name="category_id">
+                      @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+
                     <br><br>
                     <input type="submit" value="Submit">
                   </form>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Debugbar;
 
 class ProductsController extends Controller
 {
@@ -16,6 +17,9 @@ class ProductsController extends Controller
     {
       $products = \App\Product::paginate(10);  //default
 
+        Debugbar::info('labas');
+        Debugbar::info($products);
+
         return view('products.all', ['products' => $products]);
     }
 
@@ -26,7 +30,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = \App\Category::all();
+
+        return view('products.create', ['categories' => $categories]);
     }
 
     /**
@@ -62,6 +68,10 @@ class ProductsController extends Controller
             $product->photo_url = $request->file('photo_url')->store('public/products');
             $product->save();
           }
+
+          $category = \App\Category::find($request->input('category_id'));
+          $category->products()->save($product);
+
             return redirect('products');
     }
 

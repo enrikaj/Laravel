@@ -46,10 +46,20 @@ class CategoriesController extends Controller
   public function show($id)
   {
       $single = \App\Category::find($id);
+      $products = $category->products()->get();
 
-      return view('categories.single', ['category' => $single]);
+      $single=[
+        'category' => $category,
+        'products' => $products
+      ];
+      return view('categories.single', $single);
   }
 
+    public function showProducts($id)
+    {
+      $category = \App\Category::find($id);
+      $products = $category->products()->paginate();
+    }
 
   public function update(Request $request, $id)
   {
@@ -72,7 +82,7 @@ class CategoriesController extends Controller
   {
       $category = \App\Category::find($id);
 
-      return view('categories.edit', ['category' =>$category]);
+      return view('categories.all', ['products' =>$products]);
   }
 
   public function destroy($id)
@@ -81,5 +91,6 @@ class CategoriesController extends Controller
     \App\Category::destroy($id);
     return redirect('categories');
   }
+
 
 }

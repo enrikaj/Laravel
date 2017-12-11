@@ -8,6 +8,8 @@
                 <div class="panel-heading">Kategorija</div>
 
                 <div class="panel-body">
+
+                
                   <table class="table">
                     <thead>
                     <tr>
