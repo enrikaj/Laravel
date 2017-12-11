@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      $products = \App\Product::paginate(10);  //default 15
+      $products = \App\Product::paginate(10);  //default
 
         return view('products.all', ['products' => $products]);
     }
