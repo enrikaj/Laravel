@@ -19,6 +19,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                      Viso: {{ $categories->count() }} <br></br
                       @foreach ($categories as $category)
                     <tr>
                       <td>{{ $category['id'] }}</td>
