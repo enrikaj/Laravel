@@ -11,9 +11,7 @@
                   <div>
                   <a class="btn btn-default" href="{{ route('categories.create')}}">Nauja kategorija</a>
                 </div>
-                @if($products->count() == 0)
-                
-                @else
+
                   <table class="table">
                     <thead>
                     <tr>
@@ -31,7 +29,8 @@
                       </td>
                       <td>{{ $category['name'] }}</td>
                       <td>
-                          <a class="btn btn-default" href="{{ route('categories.edit', $category['id']) }}">Redaguoti</a>
+                        <a class="btn btn-default" href="{{ url('categories/' . $category['id'] . '/products') }}">Rodyti produktus</a>
+                        <a class="btn btn-default" href="{{ route('categories.edit', $category['id']) }}">Redaguoti</a>
 
                           <form method="POST" action="{{ route('categories.destroy', $category['id']) }}">
                             {{ csrf_field() }}

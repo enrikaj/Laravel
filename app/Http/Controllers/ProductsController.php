@@ -15,10 +15,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      $products = \App\Product::with('category')->paginate(10);  //default
+      $products = \App\Product::with('category')->paginate(10);  //category - metodas is product model
 
-        Debugbar::info('labas');
-        Debugbar::info($products);
+        //default
+        //Debugbar::info('labas');
+        //Debugbar::info($products);
 
         return view('products.all', ['products' => $products]);
     }
@@ -70,7 +71,7 @@ class ProductsController extends Controller
           }
 
           $category = \App\Category::find($request->input('category_id'));
-          $category->products()->save($product);
+          $category->products()->save($product);  //metodas product pervadintas į products
 
             return redirect('products');
     }

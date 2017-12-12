@@ -45,13 +45,14 @@ class CategoriesController extends Controller
 
   public function show($id)
   {
-      $single = \App\Category::find($id);
-      $products = $category->products()->get();
-      
-      $single=[
-        'category' => $category,
-        'products' => $products
+      $category = \App\Category::find($id);    //pasiimama viena kategorija
+      $products = $category->products()->get(); //paimami tos kategorijos produktai
+
+      $single = [
+        'category' => $category,   //masyve nurodoma kokia paimta kategorija
+        'products' => $products   // ir koks paimtas produktas
       ];
+
       return view('categories.single', $single);
   }
 
@@ -59,6 +60,8 @@ class CategoriesController extends Controller
     {
       $category = \App\Category::find($id);
       $products = $category->products()->paginate();
+
+      return view('products.all', ['products' => $products]);
     }
 
   public function update(Request $request, $id)

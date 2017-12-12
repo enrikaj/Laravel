@@ -26,6 +26,37 @@
                   </table>
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Produktai</div>
+
+                <div class="panel-body">
+
+                  @if($products->count() == 0)
+                    Produktų nėra
+
+                  @else
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Pavadinimas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($products as $product)
+                    <tr>
+                      <td>{{ $product['id'] }}</td>
+                      <td>{{ $product['name'] }}</td>
+                      <td></td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                  </table>
+                  @endif
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
