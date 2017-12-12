@@ -27,7 +27,6 @@
                       <td>
                           <a href="{{ route('categories.show', $category['id']) }}">{{ $category['name'] }}</a>
                       </td>
-                      <td>{{ $category['name'] }}</td>
                       <td>
                         <a class="btn btn-default" href="{{ url('categories/' . $category['id'] . '/products') }}">Rodyti produktus</a>
                         <a class="btn btn-default" href="{{ route('categories.edit', $category['id']) }}">Redaguoti</a>
